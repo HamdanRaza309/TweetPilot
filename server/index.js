@@ -1,7 +1,7 @@
 import express from "express";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
-// import { createPost } from "./mcp.tool.js";
+import { createPost } from "./mcp.tool.js";
 import { z } from "zod";
 
 const server = new McpServer({
@@ -10,12 +10,14 @@ const server = new McpServer({
 });
 
 // ... set up server resources, tools, and prompts ...
+
 const app = express();
 
+
 server.tool(
-    "addTwoNumbers",  // tool name
-    "Add two numbers", // description: what the tool do
-    { // schema
+    "addTwoNumbers",
+    "Add two numbers",
+    {
         a: z.number(),
         b: z.number()
     },
@@ -40,6 +42,7 @@ server.tool(
     const { status } = arg;
     return createPost(status);
 })
+
 
 // to support multiple simultaneous connections we have a lookup object from
 // sessionId to transport
