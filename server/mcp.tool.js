@@ -22,12 +22,10 @@ export async function createPost(status) {
         console.log("Access Token Secret:", process.env.TWITTER_ACCESS_TOKEN_SECRET);
 
         // Verify credentials by fetching user data
-        console.log("Fetching user details...");
         const user = await twitterClient.v2.me();
         console.log("Authenticated User:", user);
 
         // Check rate limit
-        console.log("Checking rate limits...");
         const rateLimit = await twitterClient.v2.rateLimit();
         console.log("Rate Limit:", rateLimit);
 
